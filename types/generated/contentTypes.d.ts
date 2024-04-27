@@ -375,22 +375,23 @@ export interface ApiRecordRecord extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
+    summary: Attribute.Text;
     recordUrl: Attribute.UID<'api::record.record', 'title'>;
     files: Attribute.Media;
     initialDate: Attribute.Date;
     finalDate: Attribute.Date;
-    student: Attribute.Relation<
-      'api::record.record',
-      'manyToOne',
-      'api::students.students'
-    >;
     user: Attribute.Relation<
       'api::record.record',
       'manyToOne',
       'plugin::users-permissions.user'
     >;
     report: Attribute.Blocks;
+    description: Attribute.Component<'register.subject-description', true>;
+    student: Attribute.Relation<
+      'api::record.record',
+      'manyToOne',
+      'api::students.students'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -428,7 +429,7 @@ export interface ApiStudentsStudents extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-    registros: Attribute.Relation<
+    records: Attribute.Relation<
       'api::students.students',
       'oneToMany',
       'api::record.record'

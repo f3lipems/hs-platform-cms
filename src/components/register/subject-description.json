@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_register_subject_descriptions",
+  "info": {
+    "displayName": "Subject Description",
+    "icon": "feather"
+  },
+  "options": {},
+  "attributes": {
+    "subject": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::subjects.subjects"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

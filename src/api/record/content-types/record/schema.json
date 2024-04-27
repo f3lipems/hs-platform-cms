@@ -16,7 +16,7 @@
       "type": "string",
       "required": true
     },
-    "description": {
+    "summary": {
       "type": "text"
     },
     "recordUrl": {
@@ -40,12 +40,6 @@
     "finalDate": {
       "type": "date"
     },
-    "student": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::students.students",
-      "inversedBy": "registros"
-    },
     "user": {
       "type": "relation",
       "relation": "manyToOne",
@@ -54,6 +48,17 @@
     },
     "report": {
       "type": "blocks"
+    },
+    "description": {
+      "type": "component",
+      "repeatable": true,
+      "component": "register.subject-description"
+    },
+    "student": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::students.students",
+      "inversedBy": "records"
     }
   }
 }
