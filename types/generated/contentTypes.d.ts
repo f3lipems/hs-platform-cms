@@ -451,6 +451,41 @@ export interface ApiStudentsStudents extends Schema.CollectionType {
   };
 }
 
+export interface ApiSubjectsSubjects extends Schema.CollectionType {
+  collectionName: 'subject';
+  info: {
+    singularName: 'subjects';
+    pluralName: 'subject';
+    displayName: 'Subjects';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    user: Attribute.Relation<
+      'api::subjects.subjects',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::subjects.subjects',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::subjects.subjects',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -823,6 +858,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::record.record'
     >;
+    subjects: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::subjects.subjects'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -899,6 +939,7 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::record.record': ApiRecordRecord;
       'api::students.students': ApiStudentsStudents;
+      'api::subjects.subjects': ApiSubjectsSubjects;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;

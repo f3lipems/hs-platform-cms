@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subject",
+  "info": {
+    "singularName": "subjects",
+    "pluralName": "subject",
+    "displayName": "Subjects"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "subjects"
+    }
+  }
+}

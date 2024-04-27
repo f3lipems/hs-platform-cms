@@ -77,6 +77,12 @@
       "relation": "oneToMany",
       "target": "api::record.record",
       "mappedBy": "user"
+    },
+    "subjects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subjects.subjects",
+      "mappedBy": "user"
     }
   }
 }
